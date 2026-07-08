@@ -25,7 +25,7 @@ def calculator(): #function to run the calculator program
     print("5. Exit")
 
     while True: #if user chooses to exit the calculator,break the loop and exit the programn
-        choice = input("\nEnter choice (1/2/3/4/5): ")
+        choice = input("\nEnter choice (1/2/3/4/5): ") #prompt user to choose an operation
 
         if choice == '5': #if user chooses to exit the calculator
             print("Thanks for using Jiban's Calculator. Goodbye!")
