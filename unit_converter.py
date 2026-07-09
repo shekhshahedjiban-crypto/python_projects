@@ -1,10 +1,8 @@
-def km_to_miles(km):
-    # Function to convert kilometers to miles
-    return km * 0.621371 
+def km_to_miles(km): # Function to convert kilometers to miles
+    return km * 0.621371 #converting km to miles using the conversion factor
 
-def celsius_to_fahrenheit(celsius):
-    # Function to convert Celsius to Fahrenheit
-    return (celsius * 9/5) + 32 
+def celsius_to_fahrenheit(celsius):# Function to convert Celsius to Fahrenheit
+    return (celsius * 9/5) + 32 #covertion formula for celcius to fahrenheit 
 
 if __name__ == "__main__":
     print("  Jiban's Unit Converter  ")
@@ -12,24 +10,24 @@ if __name__ == "__main__":
     print("2. Convert Celsius to Fahrenheit")
    
     
-    # Get the user's choice
-    choice = input("Enter your choice (1 or 2): ").strip()
+    # taking user input for the choice of conversion
+    choice = input("Enter your choice (1 or 2): ").strip() #strip() functions is for the removal of leading and trailing whitespace characters from the input string.
     
-    if choice == "1":
-        try:
-            # 1. Take Kilometers input from the user
+    if choice == "1": 
+        try: #try block is used for handling input errors like value errors when the user enters a non numeric value for kilometers or celcius
+            #taking Kilometers input from the user
             km_value = float(input("Enter distance in kilometers: "))
             miles_result = km_to_miles(km_value)
             print(f" {km_value} km is equal to {miles_result:.2f} miles")
-        except ValueError:
+        except ValueError: #if a value error occurs,the except block will be executed and will give errpr message 
             print(" Invalid input! Please enter a valid number for kilometers.")
             
     elif choice == "2":
         try:
-            # 2. Take Celsius input from the user
+            #taking Celsius input from the user
             c_value = float(input("Enter temperature in Celsius: "))
             f_result = celsius_to_fahrenheit(c_value)
-            print(f" {c_value}°C is equal to {f_result:.2f}°F")
+            print(f" {c_value}°C is equal to {f_result:.2f}°F")#.2f is used to format the output to 2 decimal places
         except ValueError:
             print(" Invalid input! Please enter a valid number for temperature.")
             
