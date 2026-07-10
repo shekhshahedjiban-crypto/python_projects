@@ -1,7 +1,7 @@
-def calculate_bmi(weight_kg, height_m):
-    # Formula: weight / (height * height)
-    bmi = weight_kg / (height_m ** 2)
-    return bmi
+def calculate_bmi(weight, height):
+    #formula of bmi= weight/height(m)^2
+    bmi = weight / (height ** 2)
+    return bmi 
 
 def get_category(bmi):
     if bmi < 18.5:
@@ -13,14 +13,17 @@ def get_category(bmi):
     else:
         return "Obese"
 
-# --- Example Usage ---
 if __name__ == "__main__":
-    # Example: 70 kg (154 lbs) and 1.75 meters (5'9")
-    weight = 70 
-    height = 1.75
+    print("Welcome to Jiban's BMI Calculator")
     
+    #taking input from the user and convert to decimal numbers (floats)
+    weight = float(input("Enter your weight in kg: "))
+    height = float(input("Enter your height in meters: "))
+    
+    # 2. Run the functions with the user inputs
     bmi_score = calculate_bmi(weight, height)
     category = get_category(bmi_score)
     
-    print(f"BMI Score: {bmi_score:.1f}")
+    #(.1f) is uesd to give the output in single float number
+    print(f"\nBMI Score: {bmi_score:.1f}") 
     print(f"Category: {category}")
