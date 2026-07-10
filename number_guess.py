@@ -18,7 +18,7 @@ def jibans_guessing_game(): #function to run jiban's guessing game
             guess = int(guess) #convert the input to an integer to check if the guess is a valid whole number
             attempts += 1
 
-            # Check the guess
+            # Checking the guess 
             if guess < secret_number: #if the guess is less than the secret number,print a messsage to inform the player that their guess is too low
                 print("Too low! Try again. ")
             elif guess > secret_number:
