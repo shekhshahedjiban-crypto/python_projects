@@ -1,86 +1,104 @@
-class ContactBook:
+class Contact:
+    def __init__(self, contact_id, name, phone, email):
+        #function that contain contact id,name,phone,email for object's property
+        self.contact_id = contact_id
+        self.name = name
+        self.phone = phone
+        self.email = email
+
+    def display_info(self):
+        return f"ID: {self.contact_id} | Name: {self.name} | Phone: {self.phone} | Email: {self.email}"
+    #function for returning contact's all information in text form
+
+
+class ContactBookSystem:
     def __init__(self):
-        # Dictionary stores name: {"phone": phone, "email": email}
-        self.contacts = {}
+        self.contacts = {}  
+#function for creating blank dictionary named self.contacts to store contact's information
 
-    def add_contact(self, name, phone, email):
-        if name.lower() in [k.lower() for k in self.contacts]:
-            print(f"Error: A contact named '{name}' already exists.")
-            return
-        self.contacts[name] = {"phone": phone, "email": email}
-        print(f"Success: Contact '{name}' added.")
-
-    def view_contacts(self):
-        print("\n--- Contact List ---")
-        if not self.contacts:
-            print("Your contact book is empty.")
-            return
+    def add_contact(self): #function for adding contact
+        print("\n    Add New Contact    ")
+        contact_id = input("Enter Contact ID: ")
+        #checking if the contact id is already exist in the system
+        if contact_id in self.contacts:
+            print("Error: A contact with this ID already exists.")
+            return #for using return loop will be start again for asking contact id input     
+        name = input("Enter Name: ")
+        phone = input("Enter Phone Number: ")
+        email = input("Enter Email: ")
         
-        for name, info in sorted(self.contacts.items()):
-            print(f"Name: {name} | Phone: {info['phone']} | Email: {info['email']}")
+        if len(contact_id) == 0 or len(name) == 0 or len(phone) == 0:
+            #len() is used for checking the contact id, name or phone is empty or not
+            print("Error: ID, Name and Phone cannot be empty.")
+            return #return is used for restart the loop asking for inputs
+            
+        new_contact = Contact(contact_id, name, phone, email)
+        #contact's information is storing in new_contact object by caliing Contact class that created at the starting of code
+        self.contacts[contact_id] = new_contact
+        #new_contact object is assigning to self.contacts dictionary with [contact_id] key
+        print(f"Contact '{name}' added successfully!")
+        #output message of inputted contact's name added successfully
 
-    def search_contact(self, name):
-        print("\n--- Search Result ---")
-        # Case-insensitive search match
-        for key in self.contacts:
-            if key.lower() == name.lower():
-                print(f"Found: {key} | Phone: {self.contacts[key]['phone']} | Email: {self.contacts[key]['email']}")
-                return
-        print(f"Contact '{name}' not found.")
+    def view_contacts(self): #function for viewing contacts
+        print("\n     Contact Records     ")
+        if len(self.contacts) == 0:
+            #len() is used to check self.contacts{} dictionary is empty or not
+            print("No contact records found.")
+            return #return for back to the loop again
+        for contact_id in self.contacts: #starting loop if contact_id is in self.contacts {} dictionary
+            contact = self.contacts[contact_id] 
+            #extracting specific contact from self.contacts{} dictionary by using [contact_id] key and save it in contact object
+            print(contact.display_info())
+             #contact object value is entered to display_info() function by dot 
 
-    def delete_contact(self, name):
-        for key in list(self.contacts.keys()):
-            if key.lower() == name.lower():
-                del self.contacts[key]
-                print(f"Success: Contact '{key}' has been deleted.")
-                return
-        print(f"Error: Contact '{name}' not found.")
+    def search_contact(self): #function for searching contacts
+        print("\n     Search Contact     ")
+        contact_id = input("Enter Contact ID to search: ")
+        #taking input of contact id for searching contact
+        if contact_id in self.contacts:#starting loop if contact_id is in self.contacts {} dictionary
+            print("\nContact Found.")
+            print(self.contacts[contact_id].display_info())
+            #printing contact's information using [contact_id] key in self.contacts dictionary and entering display_info() function by dot
+        else:
+            print("Contact not found.") #if inputted contact_id is not in the dictionary
+
+    def delete_contact(self):#function for deleting contacts
+        print("\n    Delete Contact Record    ")
+        contact_id = input("Enter Contact ID to delete: ")
+        if contact_id in self.contacts: #starting loop if contact_id is in self.contacts {} dictionary
+            removed_contact = self.contacts.pop(contact_id) 
+            #entering self.contacts{} dictionary by contact_id key to pop/delete by pop() function and store it temporary in removed_contact object
+            print(f"Contact '{removed_contact.name}' record deleted successfully.")
+            #printing the contact's name by removed_contact object entering to name by dot and that was previously stored by dictionary{}
+        else:
+            print("Contact ID not found.") #if inputted contact id is not in the dictionary{}
 
 
-def main():
-    book = ContactBook()
-    
-    # Pre-populate sample contacts for instant testing
-    book.add_contact("Alice Smith", "123-456-7890", "alice@email.com")
-    book.add_contact("Bob Jones", "987-654-3210", "bob@email.com")
-
-    while True:
-        print("\n=== CONTACT BOOK ===")
-        print("1. Add Contact")
-        print("2. View All Contacts")
-        print("3. Search Contact")
-        print("4. Delete Contact")
+def main(): #the main function that controls the execution of the entire program
+    cbs = ContactBookSystem() #created an object of the ContactBookSystem class called cbs
+    while True: #starting the infite loop untill the user exit
+        print("\n Welcome to jiban's contact book system")
+        print("1. Add contact")
+        print("2. View all contacts")
+        print("3. Search contact by id")
+        print("4. Delete contact")
         print("5. Exit")
         
-        choice = input("\nChoose an option (1-5): ").strip()
-
+        choice = input("\nChoose an option (1-5): ")
+        
         if choice == "1":
-            name = input("Enter Name: ").strip()
-            phone = input("Enter Phone Number: ").strip()
-            email = input("Enter Email Address: ").strip()
-            if name and phone:
-                book.add_contact(name, phone, email)
-            else:
-                print("Error: Name and Phone number are required.")
-                
+            cbs.add_contact()
         elif choice == "2":
-            book.view_contacts()
-            
+            cbs.view_contacts()
         elif choice == "3":
-            name = input("Enter Name to search: ").strip()
-            if name:
-                book.search_contact(name)
-                
+            cbs.search_contact()
         elif choice == "4":
-            name = input("Enter Name to delete: ").strip()
-            if name:
-                book.delete_contact(name)
-                
+            cbs.delete_contact()
         elif choice == "5":
-            print("\nExiting Contact Book. Goodbye!")
+            print("\nExiting system. Goodbye!")
             break
         else:
             print("Invalid choice! Please select a number between 1 and 5.")
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": #checking if this script is being run directly as the main program
+    main() #calling the main function to start the execution of the program
