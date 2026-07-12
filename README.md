@@ -1,5 +1,5 @@
 # python_projects
-A collection of various Python scripts and applications, ranging from simple command-line tools to management systems.
+A collection of various Python scripts and applications, ranging from simple command line tools to management systems.
 
 Projects List:
 Bank Account System (bank_account_system.py): Simulates basic banking operations like deposits, withdrawals, and balance checks.
@@ -14,7 +14,7 @@ CSV Data Analyzer (csv_data_analyzer.py): Reads and analyzes structured data fro
 
 Expense Tracker (expense_tracker.py): Helps track daily expenses and categories.
 
-Library Management System (library management system.py): Manages books, tracking checkouts and returns.
+Library Management System (library_management_system.py): Manages books, tracking checkouts and returns.
 
 Number Guessing Game (number_guess.py): A simple game where the user guesses a randomly generated number.
 
