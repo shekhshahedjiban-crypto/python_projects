@@ -32,3 +32,12 @@ python <filename>.py
 
 Example:
 python calculator.py
+
+##  Connect With Me
+I am passionate about data architecture and analytics. Feel free to explore the code and reach out for feedback or collaborations.
+
+*   **GitHub:** [shekhshahedjiban-crypto](https://github.com/shekhshahedjiban-crypto)
+*   **LinkedIn:** [Shekh Shahed Jiban](https://www.linkedin.com/in/shekh-shahed-jiban-5667a8296)
+
+---
+*If you enjoyed exploring these SQL projects, please consider starring this repository to show your support! ⭐*
